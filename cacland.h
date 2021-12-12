@@ -1,11 +1,19 @@
 #ifndef CACLAND_H
 # define CACLAND_H
-# define WIDTH 1920
-# define HEIGHT 1080
 # include <mlx.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdio.h>
 # include <math.h>
+
+# define WIDTH 1920
+# define HEIGHT 1080
+# define W 13
+# define A 0
+# define S 1
+# define D 2
+# define SPACE 49
+# define ESC 53
 
 typedef struct s_img
 {
@@ -31,6 +39,10 @@ typedef struct s_params
 	void *win;
 	t_img background;
 	t_img floor;
+	t_player player;
 }				t_params;
+
+int destroy(t_params *p);
+int keyhandler(int key, t_params *p);
 
 #endif

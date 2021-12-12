@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-SRCS = main.c
+SRCS = main.c handlers.c player.c
 OBJS = $(SRCS:c=o)
 NAME = cacland
 
