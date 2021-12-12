@@ -20,6 +20,7 @@
 # define RCLICK 2
 # define SCROLLD 4
 # define SCROLLU 5
+# define MAXJUMP 100
 
 typedef struct s_img
 {

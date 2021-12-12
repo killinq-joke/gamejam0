@@ -56,6 +56,10 @@ int keyrelease(int key, t_params *p)
 		p->player.mover = false;
 		//rotate gun && player
 	}
+	if (key == SPACE)
+	{
+		p->player.jumping = false;
+	}
 	return (0);
 }
 

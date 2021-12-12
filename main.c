@@ -2,10 +2,26 @@
 
 void	playermove(t_params *p)
 {
+	static	int		jumpunit;
+	static	bool	goback;
+
 	if (p->player.mover)
 		p->player.x += 6;
 	if (p->player.movel)
 		p->player.x -= 6;
+	if (p->player.jumping || jumpunit != 0)
+	{
+		p->player.y = p->player.y + jumpunit;
+		if (jumpunit < MAXJUMP && !goback)
+			jumpunit += MAXJUMP / 10;
+		if (goback)
+			jumpunit -= MAXJUMP / 10;
+		if (jumpunit == MAXJUMP)
+			goback = true;
+		if (jumpunit == 0)
+			goback = false;
+		p->player.y = p->player.y - jumpunit;
+	}
 }
 
 int	frame(t_params *p)
