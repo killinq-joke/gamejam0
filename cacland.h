@@ -41,6 +41,7 @@ typedef struct s_player
 	bool	mover;
 	bool	movel;
 	bool	shooting;
+	bool	jumping;
 }				t_player;
 
 typedef struct s_params

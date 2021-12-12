@@ -29,6 +29,7 @@ int keypress(int key, t_params *p)
 	if (key == SPACE)
 	{
 		//jump();
+		p->player.jumping = true;
 	}
 	if (key == ESC)
 	{
