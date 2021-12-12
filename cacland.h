@@ -7,11 +7,20 @@
 # include <stdlib.h>
 # include <math.h>
 
+typedef struct s_img
+{
+	void	*i;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_img;
+
 typedef struct s_params
 {
 	void *mlx;
 	void *win;
-	
+	t_img *background;
 }				t_params;
 
 #endif
