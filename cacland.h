@@ -1,9 +1,11 @@
 #ifndef CACLAND_H
 # define CACLAND_H
-# include <mlx.h>
+// # include <mlx.h>
+# include "./minilibx/mlx.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <stdbool.h>
 # include <math.h>
 
 # define WIDTH 1920
@@ -14,6 +16,10 @@
 # define D 2
 # define SPACE 49
 # define ESC 53
+# define LCLICK 1
+# define RCLICK 2
+# define SCROLLD 4
+# define SCROLLU 5
 
 typedef struct s_img
 {
@@ -31,6 +37,10 @@ typedef struct s_player
 	float	x;
 	float	y;
 	t_img	i;
+	bool	aimup;
+	bool	mover;
+	bool	movel;
+	bool	shooting;
 }				t_player;
 
 typedef struct s_params
@@ -43,6 +53,10 @@ typedef struct s_params
 }				t_params;
 
 int destroy(t_params *p);
-int keyhandler(int key, t_params *p);
+int	buttonpress(int button, int x, int y, t_params *p);
+int keypress(int key, t_params *p);
+int	keyrelease(int key, t_params *p);
+void playerinit(t_params *p);
+void init(t_params *p);
 
 #endif
