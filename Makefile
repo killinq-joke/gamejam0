@@ -1,6 +1,6 @@
 NAME = cacland
 
-OBJ = bin/img.o
+OBJ = bin/img.o bin/perlin.o
 
 BIN = bin
 FLAGS = -Wall -Wextra -Werror -Ofast

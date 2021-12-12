@@ -6,6 +6,8 @@
 #include <string.h>
 #include <math.h>
 
+#include "caclang.h"
+
 #define WIDTH   1920
 #define HEIGHT  1080
 #define PI      3.14159265359
@@ -50,7 +52,7 @@ static inline int	isinside(int x, int y)
 	return (x >= 0 && y >= 0 && x < WIDTH && y < HEIGHT);
 }
 
-void	draw_img(t_mlx *mlx, t_img *img, int ox, int oy, float rot)//, float size)
+void	draw_img(t_mlx *mlx, t_img *img, int ox, int oy, float rot)
 {
 	int		x, y;
 	int		X, Y;
@@ -92,11 +94,25 @@ void	mlx_clear_image(t_mlx *mlx)
 {
 	int	i;
 	int	*buf;
+	int	floor_height;
 
 	i = WIDTH * HEIGHT;
+	floor_height = WIDTH * 250;
 	buf = mlx->buf;
+	srand(24082006);
 	while (i--)
-		*buf++ = 0x111225;
+	{
+		if (i < floor_height)
+			*buf++ = (int)(255.0 * 255.0 * 255.0 * perlin(i / (float)(WIDTH) / (float)(HEIGHT * 10), (i % WIDTH) / (float)WIDTH * 10));
+		//{
+		//	if (i % (WIDTH + 100) < 50)
+		//		*buf++ = 0xaaaaaa + (rand() & 0x0f0f0f);
+		//	else
+		//		*buf++ = 0x0000ff;
+		//}
+		else
+			*buf++ = 0x111225;
+	}
 }
 
 int	update(t_mlx *mlx)
