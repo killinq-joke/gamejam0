@@ -6,9 +6,9 @@ void	playermove(t_params *p)
 	static	bool	goback;
 
 	if (p->player.mover)
-		p->player.x += 6;
+		p->player.x += MOVESPEED;
 	if (p->player.movel)
-		p->player.x -= 6;
+		p->player.x -= MOVESPEED;
 	if (p->player.jumping || jumpunit != 0)
 	{
 		p->player.y = p->player.y + jumpunit;
@@ -29,6 +29,7 @@ int	frame(t_params *p)
 	playermove(p);
 	mlx_put_image_to_window(p->mlx, p->win, p->background.i, 0, 0);
 	mlx_put_image_to_window(p->mlx, p->win, p->floor.i, 0, HEIGHT - p->floor.height);
+	mlx_put_image_to_window(p->mlx, p->win, p->boss.i.i, p->boss.x, p->boss.y);
 	mlx_put_image_to_window(p->mlx, p->win, p->player.i.i, p->player.x, p->player.y);
 	return (0);
 }

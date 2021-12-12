@@ -35,7 +35,10 @@ int keypress(int key, t_params *p)
 	{
 		destroy(p);
 	}
-	(void)p;
+	if (key == R)
+	{
+		sceneinit(p);
+	}
 	return (0);
 }
 
