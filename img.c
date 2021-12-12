@@ -45,6 +45,11 @@ t_img	load_img(t_mlx *mlx, char *filename)
 	return (img);
 }
 
+static inline int	isinside(int x, int y)
+{
+	return (x >= 0 && y >= 0 && x < WIDTH && y < HEIGHT);
+}
+
 void	draw_img(t_mlx *mlx, t_img *img, int ox, int oy, float rot)//, float size)
 {
 	int		x, y;
@@ -63,12 +68,22 @@ void	draw_img(t_mlx *mlx, t_img *img, int ox, int oy, float rot)//, float size)
 		x = -1;
 		while (++x < img->width)
 		{
-			dx = x - hx;
-			dy = (float)y - hy;
-			X = ox + dx * cosR - dy * sinR;
-			Y = oy + dx * sinR + dy * cosR;
-			if (X >= 0 && Y >= 0 && X < WIDTH && Y < HEIGHT)
-				mlx->buf[X + Y * WIDTH] = *buf++;
+			if (*buf)
+			{
+				dx = x - hx;
+				dy = (float)y - hy;
+				X = ox + dx * cosR - dy * sinR;
+				Y = oy + dx * sinR + dy * cosR;
+				if (isinside(X, Y))
+					mlx->buf[X + Y * WIDTH] = *buf;
+				if (isinside(X - 1, Y - 1))
+				{
+					mlx->buf[X + Y * WIDTH - 1 - WIDTH] = *buf;
+					mlx->buf[X + Y * WIDTH - 1] = *buf;
+					mlx->buf[X + Y * WIDTH - WIDTH] = *buf;
+				}
+			}
+			buf++;
 		}
 	}
 }
@@ -90,7 +105,7 @@ int	update(t_mlx *mlx)
 
 	mlx_clear_image(mlx);
 	rot += 0.01;
-	draw_img(mlx, mlx->sprites + 0, 64, 64, rot);
+	draw_img(mlx, mlx->sprites, 32, 32, rot);
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, 0, 0);
 	return (0);
 }
