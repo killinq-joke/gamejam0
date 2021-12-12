@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 SRCS = main.c
-OBJS = $(SRCS:cpp=o)
+OBJS = $(SRCS:c=o)
 NAME = cacland
 
 .c.o:
