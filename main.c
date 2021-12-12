@@ -2,20 +2,18 @@
 
 int	frame(t_params *p)
 {
-	
+	(void)p;
 	return (0);
 }
 
 void init(t_params *p)
 {
-	t_img	i;
-
 	p->mlx = mlx_init();
 	p->win = mlx_new_window(p->mlx, WIDTH, HEIGHT, "Cacland");
-	i.i = mlx_new_image(p->mlx, WIDTH, HEIGHT);
-	p->background = &i;
-	p->background->addr = mlx_get_data_addr(i.i, &i.bits_per_pixel, &i.line_length,
-								&i.endian);
+	p->background.i = mlx_xpm_file_to_image(p->mlx, "background.xpm", &p->background.width, &p->background.height);
+	p->floor.i = mlx_xpm_file_to_image(p->mlx, "floor.xpm", &p->floor.width, &p->floor.height);
+	mlx_put_image_to_window(p->mlx, p->win, p->background.i, 0, 0);
+	mlx_put_image_to_window(p->mlx, p->win, p->floor.i, 0, HEIGHT - p->floor.height);
 }
 
 int main()

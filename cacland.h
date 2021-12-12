@@ -14,13 +14,23 @@ typedef struct s_img
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	int		width;
+	int		height;
 }				t_img;
+
+typedef struct s_player
+{
+	float	x;
+	float	y;
+	t_img	i;
+}				t_player;
 
 typedef struct s_params
 {
 	void *mlx;
 	void *win;
-	t_img *background;
+	t_img background;
+	t_img floor;
 }				t_params;
 
 #endif
