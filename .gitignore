@@ -1,0 +1,5 @@
+cacland
+a.out
+*.o
+*.dSYM
+*test*
