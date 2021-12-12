@@ -22,6 +22,10 @@ void	playermove(t_params *p)
 			goback = false;
 		p->player.y = p->player.y - jumpunit;
 	}
+	if (p->player.shooting)
+	{
+		// system("afplay sounds/pew.wav");
+	}
 }
 
 int	frame(t_params *p)

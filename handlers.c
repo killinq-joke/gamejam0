@@ -36,9 +36,7 @@ int keypress(int key, t_params *p)
 		destroy(p);
 	}
 	if (key == R)
-	{
 		sceneinit(p);
-	}
 	return (0);
 }
 
@@ -68,7 +66,6 @@ int keyrelease(int key, t_params *p)
 
 int	buttonpress(int button, int x, int y, t_params *p)
 {
-	printf("%d\n", button);
 	(void)x;
 	(void)y;
 	if (button == LCLICK)

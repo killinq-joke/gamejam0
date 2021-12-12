@@ -6,6 +6,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <stdbool.h>
+# include <time.h>
 # include <math.h>
 
 # define WIDTH 1920
@@ -22,7 +23,7 @@
 # define SCROLLD 4
 # define SCROLLU 5
 # define MAXJUMP 200
-# define MOVESPEED 6
+# define MOVESPEED 10
 
 typedef struct s_img
 {
