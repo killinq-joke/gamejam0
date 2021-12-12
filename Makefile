@@ -1,17 +1,18 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-SRCS = main.c
+SRCS = main.c handlers.c init.c
 OBJS = $(SRCS:c=o)
 NAME = cacland
 
 .c.o:
-	$(CC) $(CFLAGS) $(SRCS) -c
+	$(CC) $(CFLAGS) $(SRCS) -Iminilibx -c
 
 .PHONY: all clean fclean re
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -I. -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	make -C minilibx
+	$(CC) $(CFLAGS) $(OBJS) -I. -LminilibX -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 clean:
 	$(RM) $(OBJS)
